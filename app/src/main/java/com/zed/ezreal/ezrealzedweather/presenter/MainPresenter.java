@@ -30,6 +30,11 @@ public class MainPresenter {
         //得到数据（现在还是空实现）
         fsd.getFutureSevenDaysData();
         //Ui线程改变Ui(现在同样是空实现)
-        mvi.changeUi();
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                mvi.changeUi();
+            }
+        });
     }
 }
