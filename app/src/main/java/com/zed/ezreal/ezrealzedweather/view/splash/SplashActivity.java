@@ -20,30 +20,18 @@ public class SplashActivity extends Activity implements SplashViewInterface {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         presenter = new SplashPresenter(this);
-
+        presenter.jumpToMain();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        jumpToMain();
     }
 
     @Override
     public void jumpToMain() {
-        new Thread(){
-            @Override
-            public void run() {
-                super.run();
-                try {
-                    Thread.sleep(5000);
-                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    SplashActivity.this.finish();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        startActivity(intent);
+        SplashActivity.this.finish();
     }
 }

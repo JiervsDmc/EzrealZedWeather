@@ -1,7 +1,9 @@
 package com.zed.ezreal.ezrealzedweather.presenter;
 
+import android.content.Intent;
 import android.os.Handler;
 
+import com.zed.ezreal.ezrealzedweather.view.main.MainActivity;
 import com.zed.ezreal.ezrealzedweather.view.splash.SplashViewInterface;
 
 /**
@@ -17,11 +19,22 @@ public class SplashPresenter {
     }
 
     public void jumpToMain() {
-        mHandler.post(new Runnable() {
+        new Thread(){
             @Override
             public void run() {
-                splashViewInterface.jumpToMain();
+                super.run();
+                try {
+                    Thread.sleep(5000);
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            splashViewInterface.jumpToMain();
+                        }
+                    });
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        });
+        }.start();
     }
 }
