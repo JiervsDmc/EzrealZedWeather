@@ -7,6 +7,5 @@ package com.zed.ezreal.ezrealzedweather.view.main;
  */
 public interface MainViewInterface {
 
-    //举例，改变UI的方法
-    public void changeUi();
+    void setWeatherLiveInfo(String s);
 }
