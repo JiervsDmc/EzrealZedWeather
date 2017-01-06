@@ -1,0 +1,4 @@
+this is a test
+checkout branch workflow:
+git branch -a
+git checkout -b 'local_branch_name' remote_branch
