@@ -19,22 +19,6 @@ public class SplashPresenter {
     }
 
     public void jumpToMain() {
-        new Thread(){
-            @Override
-            public void run() {
-                super.run();
-                try {
-                    Thread.sleep(5000);
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            splashViewInterface.jumpToMain();
-                        }
-                    });
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+        splashViewInterface.jumpToMain();
     }
 }
