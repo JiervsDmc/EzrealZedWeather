@@ -3,17 +3,33 @@ package com.zed.ezreal.ezrealzedweather.view.main;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.Toast;
-
+import android.widget.TextView;
+import com.zed.ezreal.ezrealzedweather.R;
+import com.zed.ezreal.ezrealzedweather.presenter.MainPresenter;
 import com.zed.ezreal.ezrealzedweather.R;
 import com.zed.ezreal.ezrealzedweather.view.BaseActivity;
 
-public class MainActivity extends BaseActivity {
+/**
+ * Created by Jiervs on 2016/12/29.
+ * Fixed by Ezreal on 2017/01/7.
+ */
 
+public class MainActivity extends BaseActivity implements MainViewInterface{
+    
+    MainPresenter mainPresenter;
+    TextView textView;
     private long exitTime = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        textView = (TextView) findViewById(R.id.test);
+        mainPresenter = new MainPresenter(this);
+        mainPresenter.getFutureSevenDayData();
+    }
+
+    @Override
+    public void setWeatherLiveInfo(String s) {
+        textView.setText(s);
     }
 
     @Override

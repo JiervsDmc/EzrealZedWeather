@@ -6,5 +6,5 @@ package com.zed.ezreal.ezrealzedweather.model.logic;
  */
 public interface FutureSevenDaysImp {
 
-    public void getFutureSevenDaysData();
+    void getFutureSevenDaysData();
 }

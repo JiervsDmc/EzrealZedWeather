@@ -13,6 +13,7 @@ import com.zed.ezreal.ezrealzedweather.view.main.MainActivity;
 
 /**
  * Created by Jiervs on 2016/12/29.
+ * Fixed by Ezreal on 2017/01/7.
  */
 public class SplashActivity extends BaseActivity implements SplashViewInterface {
 
@@ -26,6 +27,11 @@ public class SplashActivity extends BaseActivity implements SplashViewInterface 
         presenter = new SplashPresenter(this);
         presenter.jumpToMain();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -49,13 +55,11 @@ public class SplashActivity extends BaseActivity implements SplashViewInterface 
                 // TODO Auto-generated method stub
                 // 初始化
                 init();
-
             }
 
             // 动画重复时执行
             public void onAnimationRepeat(Animation animation) {
                 // TODO Auto-generated method stub
-
             }
 
             // 动画结束时执行
@@ -65,14 +69,12 @@ public class SplashActivity extends BaseActivity implements SplashViewInterface 
                 finish();
             }
         });
-
     }
 
     private void init() {
+      
     }
-
-
-
+  
     @Override
     public void onBackPressed() {
         finish();
