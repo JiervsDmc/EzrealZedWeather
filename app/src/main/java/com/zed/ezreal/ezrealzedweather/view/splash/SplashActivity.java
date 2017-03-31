@@ -23,7 +23,7 @@ public class SplashActivity extends BaseActivity implements SplashViewInterface 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ll_splash = (LinearLayout) findViewById(R.id.ll_splash);
+        getViewResId();
         presenter = new SplashPresenter(this);
         presenter.jumpToMain();
 
@@ -37,6 +37,11 @@ public class SplashActivity extends BaseActivity implements SplashViewInterface 
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_splash;
+    }
+
+    @Override
+    protected void getViewResId() {
+        ll_splash = (LinearLayout) findViewById(R.id.ll_splash);
     }
 
 

@@ -7,5 +7,8 @@ package com.zed.ezreal.ezrealzedweather.view.main;
  */
 public interface MainViewInterface {
 
-    void setWeatherLiveInfo(String s);
+    /**
+     * View展示当前天气信息
+     */
+    void setWeatherLiveInfo(String week,String city,String temperature);
 }

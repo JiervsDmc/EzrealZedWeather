@@ -6,10 +6,10 @@ android {
 
     defaultConfig {
         applicationId "com.zed.ezreal.ezrealzedweather"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
     buildTypes {
         release {
@@ -33,4 +33,7 @@ dependencies {
     compile 'com.squareup.retrofit:adapter-rxjava:+'
     compile 'com.trello:rxlifecycle:+'
     compile 'com.trello:rxlifecycle-components:+'
+    /*htextview*/
+    compile "com.hanks:htextview-base:0.1.1"
+    compile "com.hanks:htextview-fall:0.1.1"
 }

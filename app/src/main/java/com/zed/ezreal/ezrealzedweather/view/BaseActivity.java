@@ -8,22 +8,21 @@ import android.view.ViewGroup;
 import android.view.Window;
 
 /**
- * Created by ext.ezreal.cai on 2017/1/5.
+ * Created by Ezreal on 2017/1/5.
  */
 
 public abstract class BaseActivity extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        继承AppCompatActivity时使用：
-//        supportRequestWindowFeature(Window.FEATURENOTITLE)
-//
-//        继承activity时使用：
-//        requestWindowFeature(Window.FEATURENOTITLE)
-
+        //继承AppCompatActivity时使用
+        //supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        //继承activity时使用：
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        setContentView(getLayoutResId());//把设置布局文件的操作交给继承的子类
+        //把设置布局文件的操作交给继承的子类
+        setContentView(getLayoutResId());
 
         ViewGroup contentFrameLayout = (ViewGroup) findViewById(Window.ID_ANDROID_CONTENT);
         View parentView = contentFrameLayout.getChildAt(0);
@@ -33,10 +32,12 @@ public abstract class BaseActivity extends Activity {
     }
 
     /**
-     * 返回当前Activity布局文件的id
-     *
-     * @return
+     * @return 返回当前Activity布局文件的id
      */
     abstract protected int getLayoutResId();
 
+    /**
+     * findViews
+     */
+    abstract protected void getViewResId();
 }

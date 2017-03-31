@@ -1,9 +1,6 @@
 package com.zed.ezreal.ezrealzedweather.presenter;
 
-import android.content.Intent;
 import android.os.Handler;
-
-import com.zed.ezreal.ezrealzedweather.view.main.MainActivity;
 import com.zed.ezreal.ezrealzedweather.view.splash.SplashViewInterface;
 
 /**

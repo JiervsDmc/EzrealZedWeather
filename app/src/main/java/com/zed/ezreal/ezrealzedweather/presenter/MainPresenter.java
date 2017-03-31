@@ -17,6 +17,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.zed.ezreal.ezrealzedweather.EZWApplication.App_Gson;
+
 /**
  * 该Presenter用来对view的UI变化和model的业务逻辑做处理，
  * 一般来说，该类里面将有model中的逻辑类和view中的Ui类的成员变量，
@@ -31,6 +33,8 @@ public class MainPresenter {
     private GetWeatherLive gwl;
     private Handler mHandler = new Handler();
 
+    protected String[] weeksName = {"Sunday","Monday","Tuseday","Wednesday","Thursday","Friday","Saturday"};
+
     /**
      * 参数待定
      */
@@ -40,18 +44,32 @@ public class MainPresenter {
         this.gwl = new GetWeatherLive();
     }
 
-    public void getFutureSevenDayData() {
+    public void getWeatherLiveData(final String city, String country) {
 
         //得到当前天气的数据,并且展示在UI上
         gwl.getWeatherLiveData(new Callback<ResponseBody>() {
+
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 ResponseBody responseBody = response.body();
+
                 try {
-                    String s = responseBody.string();
-                    mvi.setWeatherLiveInfo(s);
-                    Gson gson = new Gson();
-                    WeatherLiveBean weatherLiveBean = gson.fromJson(s,WeatherLiveBean.class);
+                    //得到json数据
+                    String json = responseBody.string();
+                    WeatherLiveBean.HeWeather5Bean heWeather5 =
+                            App_Gson.fromJson(json,WeatherLiveBean.class).getHeWeather5().get(0);
+                    //得到温度
+                    WeatherLiveBean.HeWeather5Bean.NowBean now = heWeather5.getNow();
+                    String temperature = now.getTmp();
+                    //得到当地时间
+                    WeatherLiveBean.HeWeather5Bean.BasicBean basic = heWeather5.getBasic();
+                    String locTime = basic.getUpdate().getLoc();
+                    //根据时间得到星期
+                    int weekDayInt = gwl.getWeekDay(locTime);
+                    String weekDayString = weeksName[weekDayInt];
+                    //设置ui即时天气now数据
+                    mvi.setWeatherLiveInfo(weekDayString,city,temperature);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -61,7 +79,8 @@ public class MainPresenter {
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
             }
-        });
+
+        },city,country);
 
         //得到数据（现在还是空实现）
         //fsd.getFutureSevenDaysData();
